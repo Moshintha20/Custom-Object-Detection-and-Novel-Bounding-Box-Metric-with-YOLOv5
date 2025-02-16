@@ -11,8 +11,8 @@ This repository provides the implementation for training a custom object detecti
 3. [Dataset Preparation](#3-dataset-preparation)
 4. [Training the Model](#4-training-the-model)
 5. [Custom Metric Definition](#5-custom-metric-definition)
-6. [Model Evaluation](#6-model-evaluation)
-7. [YOLOv5 Setup and Architecture](#7-yolov5-setup-and-architecture)
+<!-- 6. [Model Evaluation](#6-model-evaluation) -->
+6. [YOLOv5 Setup and Architecture](#6-yolov5-setup-and-architecture)
 
 ---
 
@@ -95,7 +95,7 @@ python train_yolo.py --data /path/to/data.yaml --weights /full/path/to/yolov5/yo
 This repository defines a custom bounding box similarity metric for evaluating object detection performance. The metric is integrated into the training process via the `train_yolo.py` script, but it can be further customized by modifying the metric-related code within this script.
 
 ---
-
+<!-- 
 ## 6. Model Evaluation
 
 After training the model, you can evaluate its performance on the test set using the `evaluate.py` script. To evaluate the model, use the following command:
@@ -108,7 +108,7 @@ python evaluate.py --weights /path/to/trained_model.pt --data /path/to/data.yaml
 - Replace `/path/to/data.yaml` with the path to the `data.yaml` file.
 
 ---
-
-## 7. YOLOv5 Setup and Architecture
+-->
+## 6. YOLOv5 Setup and Architecture
 
 The object detection system in this repository is built using the YOLOv5 architecture. The architecture has been modified to support the integration of a custom bounding box similarity metric. YOLOv5 provides a fast, reliable, and scalable solution for object detection, and this repository enhances it with customized performance metrics.
