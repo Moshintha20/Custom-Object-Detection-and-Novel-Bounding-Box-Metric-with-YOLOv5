@@ -45,6 +45,12 @@ This will install all necessary packages.
 ---
 
 ## 3. Dataset Preparation
+### Original Kaggle Dataset
+
+The dataset used for training the model is the **Dog and Cat Detection** dataset, available on Kaggle. You can access and download the original dataset from the following link:
+
+[Dog and Cat Detection Dataset on Kaggle](https://www.kaggle.com/datasets/andrewmvd/dog-and-cat-detection/data)
+
 
 ### Downloading the Dataset
 
@@ -106,9 +112,3 @@ python evaluate.py --weights /path/to/trained_model.pt --data /path/to/data.yaml
 ## 7. YOLOv5 Setup and Architecture
 
 The object detection system in this repository is built using the YOLOv5 architecture. The architecture has been modified to support the integration of a custom bounding box similarity metric. YOLOv5 provides a fast, reliable, and scalable solution for object detection, and this repository enhances it with customized performance metrics.
-
-### Key Components:
-- **YOLOv5 Backbone**: Utilized for object detection tasks.
-- **Custom Metric**: Enhances the object detection process by modifying how bounding box overlaps are evaluated.
-
----
