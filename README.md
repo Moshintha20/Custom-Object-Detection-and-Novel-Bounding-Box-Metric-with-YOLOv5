@@ -10,7 +10,7 @@ This repository provides the implementation for training a custom object detecti
 2. [Installation](#2-installation)
 3. [Dataset Preparation](#3-dataset-preparation)
 4. [Training the Model](#4-training-the-model)
-5. [Custom Metric Definition](#5-custom-metric-definition)
+5. [Custom Bounding Box Similarity Metric](#5-custom-bounding-box-similarity-metric)
 <!-- 6. [Model Evaluation](#6-model-evaluation) -->
 6. [YOLOv5 Setup and Architecture](#6-yolov5-setup-and-architecture)
 
@@ -90,9 +90,32 @@ python train_yolo.py --data /path/to/data.yaml --weights /full/path/to/yolov5/yo
 
 ---
 
-## 5. Custom Metric Definition
+## 5. Custom Bounding Box Similarity Metric
 
-This repository defines a custom bounding box similarity metric for evaluating object detection performance. The metric is integrated into the training process via the `train_yolo.py` script, but it can be further customized by modifying the metric-related code within this script.
+This repository introduces a **Hybrid IoU (HIoU)** similarity metric, which extends the traditional **Intersection over Union (IoU)** by incorporating additional geometric properties. HIoU combines **Fused IoU (FIoU)** and **Complete IoU (CIoU)** using a dynamic weighting approach to account for both shape and position differences.  
+
+#### **FIoU (Fused IoU)**  
+FIoU refines IoU by adding a corner-based penalty term:  
+\[
+\text{FIoU} = \text{IoU} - \frac{l_2}{c^2}
+\]
+where \( l_2 \) represents the sum of squared differences between the bounding box corners, and \( c^2 \) is the squared diagonal of the smallest enclosing box.  
+
+#### **CIoU (Complete IoU)**  
+CIoU improves IoU by penalizing center distance and aspect ratio differences:  
+\[
+\text{CIoU} = \text{IoU} - \frac{\rho^2}{c^2} - \alpha v
+\]
+where \( \rho^2 \) is the squared center distance, and \( v \) represents the aspect ratio difference.  
+
+#### **HIoU (Hybrid IoU) – Our Custom Method**  
+HIoU dynamically adjusts the influence of FIoU and CIoU based on IoU values:  
+\[
+\text{HIoU} = w_{\text{FIoU}} \cdot \text{FIoU} + w_{\text{CIoU}} \cdot \text{CIoU}
+\]
+where the weights are defined using a sigmoid function to smoothly transition between FIoU (when IoU is low) and CIoU (when IoU is high). This approach ensures that when boxes have low overlap, more emphasis is placed on corner alignment, while for well-matched boxes, aspect ratio and center alignment become more important.  
+
+Although HIoU introduces additional computations, it provides a more structured approach to bounding box similarity by incorporating multiple geometric factors beyond simple overlap.
 
 ---
 <!-- 
