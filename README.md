@@ -82,7 +82,7 @@ Once the dataset is prepared, you can train the YOLOv5 model using the `train_yo
 Use the following command to begin training:
 
 ```bash
-python train_yolo.py --data /path/to/data.yaml --weights yolov5/yolov5su.pt --batch-size 16 --epochs 50
+python train_yolo.py --data /path/to/data.yaml --weights /full/path/to/yolov5/yolov5su.pt --batch-size 8 --epochs 10
 ```
 
 - Replace `/path/to/data.yaml` with the path to your `data.yaml` file.
