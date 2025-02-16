@@ -121,7 +121,7 @@ where:
 
 ---
 
-### **HIoU (Hybrid IoU) – Our Custom Method**  
+### **HIoU (Hybrid IoU) – Custom Method**  
 HIoU **dynamically adjusts** the influence of **FIoU and CIoU** based on IoU values:  
 
 $$
