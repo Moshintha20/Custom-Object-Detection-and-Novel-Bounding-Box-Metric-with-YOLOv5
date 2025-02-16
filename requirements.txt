@@ -20,6 +20,5 @@ setuptools>=70.0.0
 # Custom requirements for dataloader.py
 argparse
 kagglehub
-shutil
 beautifulsoup4
 scikit-learn
